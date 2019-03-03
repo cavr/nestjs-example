@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Response,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PostsService } from './posts.service';
 import { Post as PostInterface } from './interfaces/post.interface';
@@ -22,14 +15,12 @@ export class PostsController {
     description: 'The record has been successfully created.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Response() res, @Body() createPostDto: CreatePostDto) {
-    const post = this.postsService.create(createPostDto);
-    return res.status(HttpStatus.OK)(post);
+  async create(@Body() createPostDto: CreatePostDto) {
+    this.postsService.create(createPostDto);
   }
 
   @Get()
-  async findAll(@Response() res) {
-    const posts = this.postsService.findAll();
-    return res.status(HttpStatus.OK).json(posts);
+  async findAll(): Promise<PostInterface[]> {
+    return this.postsService.findAll();
   }
 }

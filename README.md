@@ -4,6 +4,8 @@ Simple Api Rest Example with NestJS (NodeJS TypestScript Framework)
 
 Swagger localhost:3000/api
 
+sudo docker run -d -p 27017:27017 -v ~/data:/data/db mongo
+
 https://github.com/nestjs/typescript-starter
 
 https://codebrains.io/structured-expressjs-nestjs-swagger-mongodb-typescript/

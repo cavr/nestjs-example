@@ -2,9 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { ErrorFilter } from './errors.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new ErrorFilter());
   const options = new DocumentBuilder()
     .setTitle('Todos example')
     .setDescription('The Todos API description')
